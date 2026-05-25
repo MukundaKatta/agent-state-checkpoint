@@ -1,61 +1,21 @@
 [build-system]
-requires = ["hatchling>=1.24"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
 
 [project]
 name = "agent-state-checkpoint"
 version = "0.1.0"
-description = "Durable JSON checkpoint for long-running AI agents. Atomic writes, schema versioning with migrations, optional rotating history. Resume agent state after crash, restart, or sleep. Zero runtime deps."
+description = "Durable JSON checkpoint for long-running agent jobs"
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10"
-license = { text = "MIT" }
-authors = [{ name = "Mukunda Rao Katta", email = "mukunda.vjcs6@gmail.com" }]
-keywords = [
-  "llm",
-  "ai",
-  "agent",
-  "checkpoint",
-  "state",
-  "persistence",
-  "crash-recovery",
-]
+keywords = ["llm", "agent", "checkpoint", "state", "persistence", "durable"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
-  "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
 ]
-dependencies = []
 
-[project.optional-dependencies]
-dev = ["pytest>=8.0", "ruff>=0.4"]
-
-[project.urls]
-Homepage = "https://github.com/MukundaKatta/agent-state-checkpoint"
-Issues = "https://github.com/MukundaKatta/agent-state-checkpoint/issues"
-Source = "https://github.com/MukundaKatta/agent-state-checkpoint"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/agent_state_checkpoint"]
-
-[tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/README.md", "/LICENSE"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src"]
-
-[tool.ruff]
-target-version = "py310"
-line-length = 100
-
-[tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM"]
+[tool.setuptools.packages.find]
+where = ["src"]
